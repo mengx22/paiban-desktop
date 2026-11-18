@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'">
+  <title>导出与预览</title>
+  <link rel="stylesheet" href="../assets/export.css">
+</head>
+<body>
+  <header class="export-header">
+    <div><h1>导出与预览</h1><p id="weekInfo">正在载入排班表…</p></div>
+    <div class="actions">
+      <button id="closeBtn" type="button">关闭</button>
+      <button id="csvBtn" type="button" disabled>导出 CSV 明细</button>
+      <button class="primary" id="wordBtn" type="button" disabled>导出 Word</button>
+    </div>
+  </header>
+  <main class="export-layout">
+    <aside class="edit-panel">
+      <h2>文档内容</h2><p class="muted">修改后，右侧预览会实时更新。</p>
+      <label for="titleInput">标题</label>
+      <textarea id="titleInput" rows="4" maxlength="1500"></textarea>
+      <label for="annotationsInput">注释与班次说明</label>
+      <textarea id="annotationsInput" rows="13" maxlength="30000"></textarea>
+      <label for="notesInput">本周备注</label>
+      <textarea id="notesInput" rows="3" maxlength="10000" placeholder="填写需要附在表格下方的补充说明"></textarea>
+      <div class="rest-note"><strong>备注列自动填写欠休量</strong><p>使用本周末欠休余额，包含欠0；主任显示“—”。带教栏可在预览表格中直接填写。</p></div>
+      <button id="resetBtn" type="button">恢复本周默认内容</button>
+      <p class="draft-status" id="draftStatus" role="status">修改仅用于导出文档</p>
+    </aside>
+    <section class="preview-panel" aria-label="排班表预览">
+      <div class="preview-toolbar"><span id="pageCount">A4 横向</span><label for="zoomSelect">缩放 <select id="zoomSelect"><option value="fit">适应宽度</option><option value="0.75">75%</option><option value="1">100%</option><option value="1.25">125%</option></select></label></div>
+      <div id="previewScroll" class="preview-scroll"><div id="previewPages"></div></div>
+      <p class="preview-hint">标题和带教栏可直接点击编辑。预览分页供参考，Word / WPS 的分页可能略有差异。</p>
+    </section>
+  </main>
+  <div id="exportStatus" class="export-status" role="status" hidden></div>
+  <div id="measureHost" aria-hidden="true"></div>
+  <script src="../vendor/jszip.min.js"></script>
+  <script src="../assets/roster-template.js"></script>
+  <script src="../js/roster-export.js"></script>
+  <script src="../js/export-window.js"></script>
+</body>
+</html>

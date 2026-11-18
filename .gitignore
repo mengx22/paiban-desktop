@@ -1,0 +1,15 @@
+node_modules/
+.cache/
+release/
+test-output/
+/data/
+/排班工作台/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+*.log
+Thumbs.db
+Desktop.ini
+/docs/使用手册/图片/manual-*.png
